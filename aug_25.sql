@@ -94,5 +94,28 @@ FROM employee;
 # truncate
 TRUNCATE TABLE employee;
 
+
+
 SELECT *
 FROM employee;
+
+
+# 26 Aug : adding constraints to existing table
+
+# adding PK
+ALTER TABLE students ADD PRIMARY KEY(stu_id);
+
+DESCRIBE students;
+
+# adding UNique key
+ALTER TABLE students ADD UNIQUE(ph_no);
+
+# adding check constraint
+ALTER TABLE students ADD COLUMN age TINYINT;
+ALTER TABLE students ADD CHECK(age >= 18);
+
+# adding default value to a column
+ALTER TABLE students ALTER COLUMN course SET DEFAULT 'SQL';
+
+# adding NOT NULL constraint
+ALTER TABLE students MODIFY COLUMN name VARCHAR(30) NOT NULL;
