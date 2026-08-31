@@ -58,3 +58,12 @@ FROM superstore
 ORDER BY country DESC;
 
 
+# 31 Aug : revision
+SELECT *
+FROM superstore;
+
+# q1 : customer_name,sales,profit
+SELECT customer_name,sales,profit
+FROM superstore;
+
+

@@ -6,18 +6,18 @@ CREATE DATABASE student;
 
 USE student;
 
-# create table
-CREATE TABLE students(
-	stu_id TINYINT,
+CREATE TABLE students (
+    stu_id TINYINT,
     name VARCHAR(30),
     course VARCHAR(20),
     ph_no VARCHAR(20)
-    );
+);
 DESCRIBE students;
 
-# display rows
-SELECT *
-FROM students;
+SELECT 
+    *
+FROM
+    students;
 
 # add column
 ALTER TABLE students ADD COLUMN email VARCHAR(50);
@@ -48,56 +48,74 @@ DROP TABLE stu;
 # drop database
 DROP DATABASE student;
 
-# create new table : employee
-CREATE TABLE employee(
-	emp_id TINYINT,
+CREATE TABLE employee (
+    emp_id TINYINT,
     emp_name VARCHAR(20),
-    salary DECIMAL(10,2),
+    salary DECIMAL(10 , 2 ),
     dept_id TINYINT,
     age TINYINT,
     ph_no VARCHAR(20),
     email VARCHAR(20),
     city VARCHAR(20)
-	);
+);
 DESCRIBE employee;
 
 # insert few values
 INSERT INTO employee VALUES 
 (1, "sai",20000.4,10, 23, "1234567890", "sai@gmail.com","diu"),
 (2, "mona",2000.45,20, 43, "12345678320", "mona@gmail.com","daman");
-# all columns
-SELECT *
-FROM employee;
-#specific columns
-SELECT emp_name
-FROM employee;
+SELECT 
+    *
+FROM
+    employee;
+SELECT 
+    emp_name
+FROM
+    employee;
 
-# with where clause
-SELECT * 
-FROM employee
-WHERE dept_id=20;
+SELECT 
+    *
+FROM
+    employee
+WHERE
+    dept_id = 20;
 
 # delete row
 SET SQL_SAFE_UPDATES = 0;
-DELETE FROM employee WHERE emp_id=2;
+DELETE FROM employee 
+WHERE
+    emp_id = 2;
 
-SELECT *
-FROM employee;
+SELECT 
+    *
+FROM
+    employee;
 
-# update column value
-UPDATE employee SET salary=100000 WHERE emp_id=1;
-UPDATE employee SET city="hyd" WHERE dept_id = 10;
+UPDATE employee 
+SET 
+    salary = 100000
+WHERE
+    emp_id = 1;
+UPDATE employee 
+SET 
+    city = 'hyd'
+WHERE
+    dept_id = 10;
 
-SELECT *
-FROM employee;
+SELECT 
+    *
+FROM
+    employee;
 
 # truncate
 TRUNCATE TABLE employee;
 
 
 
-SELECT *
-FROM employee;
+SELECT 
+    *
+FROM
+    employee;
 
 
 # 26 Aug : adding constraints to existing table
@@ -119,3 +137,24 @@ ALTER TABLE students ALTER COLUMN course SET DEFAULT 'SQL';
 
 # adding NOT NULL constraint
 ALTER TABLE students MODIFY COLUMN name VARCHAR(30) NOT NULL;
+
+# Aug 27 : course table
+CREATE TABLE course (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(50)
+);
+
+# stu table
+CREATE TABLE stu(
+	stu_id INT PRIMARY KEY,
+    stu_name VARCHAR(50),
+	course_id INT
+);
+
+# add foreign key contraint to stu table
+ALTER TABLE stu ADD CONSTRAINT fk_course FOREIGN KEY(course_id) REFERENCES course(course_id);
+
+# check the changes
+DESC course;
+
+DESCRIBE stu;
